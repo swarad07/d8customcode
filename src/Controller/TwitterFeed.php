@@ -36,7 +36,7 @@ class TwitterFeed extends ControllerBase {
     return $content;
 	}
 
-	public function twitterTitleCallbak() {
+	public function twitterTitleCallbak($username) {
 		return 'Latest 10 tweets from ' . $username;
 	}
 }

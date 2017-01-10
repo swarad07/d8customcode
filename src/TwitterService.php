@@ -45,7 +45,7 @@ class TwitterService {
 
     $tweets = [];
     foreach ($data as $value) {
-      $tweets[] = $value['text'];
+      $tweets[] = '<div class="tweet">' . $value['text'] . '</div>';
     }
 
     return '' . implode('', $tweets) . '';
