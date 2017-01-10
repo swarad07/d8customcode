@@ -1,0 +1,15 @@
+swarad.custom_form:
+  path: '/swarad/custom-form'
+  defaults: 
+    _title: 'Custom Form'
+    _form:  'Drupal\swarad\Form\CustomForm'
+  requirements:
+    _permission: 'access content'
+swarad.twitter_feed:
+  path: '/swarad/twitter/{username}'
+  defaults:
+    _title_callback: 'Drupal\swarad\Controller\TwitterFeed::twitterTitleCallbak'
+    _controller: 'Drupal\swarad\Controller\TwitterFeed::getFeed'
+    username: 'drupal'
+  requirements:
+    _permission: 'access content'
