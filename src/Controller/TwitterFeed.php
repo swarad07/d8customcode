@@ -10,15 +10,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class TwitterFeed extends ControllerBase {
 	
-	protected $twitter;
+	private $twitter;
 
-	public function __construct($twitter) {
+	private $logger;
+
+	public function __construct($twitter, $logger) {
 		$this->twitter = $twitter;
+		$this->logger = $logger;
 	}
 
 	public static function create(ContainerInterface $container) {
 		return new static(
-	      $container->get('swarad.twitterservice')
+	      $container->get('swarad.twitterservice'),
+	      $container->get('logger.factory')
 	    );
 	}
 
@@ -32,6 +36,8 @@ class TwitterFeed extends ControllerBase {
 		$content = array(
       '#markup' => $data,
     );
+	$this->logger->get('default')->debug($data);
+	//\Drupal::logger('swarad')->notice('Simple Page was displayed');
 
     return $content;
 	}
