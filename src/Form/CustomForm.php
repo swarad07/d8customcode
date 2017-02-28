@@ -49,7 +49,53 @@ class CustomForm extends FormBase {
         ),
       ),
     );
-    
+
+    $form['contacts'] = array(
+      '#type' => 'table',
+      '#caption' => $this->t('Sample Table'),
+      '#header' => array($this->t('Name'), $this->t('Phone')),
+    );
+
+    for ($i = 1; $i <= 4; $i++) {
+      $form['contacts'][$i]['#attributes'] = array('class' => array('foo', 'baz'));
+      $form['contacts'][$i]['name'] = array(
+        '#type' => 'textfield',
+        '#title' => $this->t('Name'),
+        '#title_display' => 'invisible',
+        '#size' => 50
+      );
+
+      $form['contacts'][$i]['phone'] = array(
+        '#type' => 'tel',
+        '#title' => $this->t('Phone'),
+        '#title_display' => 'invisible',
+      );
+    }
+
+    $form['contacts'][]['colspan_example'] = array(
+      '#plain_text' => 'Colspan Example',
+      '#wrapper_attributes' => array('colspan' => 2, 'class' => array('foo', 'bar')),
+    );
+
+    $form['expiration'] = array(
+      '#type' => 'date',
+      '#title' => $this->t('Content expiration'),
+      '#default_value' => array('year' => 2020, 'month' => 2, 'day' => 15,),
+      '#size' => 1
+    );
+
+     $form['quantity'] = array(
+      '#type' => 'number',
+      '#title' => $this->t('Quantity'),
+       '#size' => 20
+      );
+
+    $form['pass1'] = array(
+      '#type' => 'password_confirm',
+      '#title' => $this->t('Password'),
+      '#size' => 6,
+    );
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['random_button'] = array(
       '#type' => 'button',
